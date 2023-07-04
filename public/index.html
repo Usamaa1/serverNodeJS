@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    
+    <form action="" onsubmit="weatherInfo(); return false">
+        <input type="text" name="" id="cityName">
+        <input type="submit" value="Check Weather">
+    </form>
+    <h1 id="currentTemp"></h1>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module">
+   window.weatherInfo=  function (){
+
+ 
+  let cityName = document.querySelector('#cityName').value;
+  
+  console.log(cityName)
+
+
+  axios.get(`/weather/${cityName}`)
+  .then(function (response) {
+    // handle success
+    console.log(response.data);
+    // console.log(`${response.data.tempC}°C`);
+    document.querySelector('#currentTemp').innerHTML = `${response.data.tempC}°C`
+    // console.log(response.data.current.condition.icon);
+
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+
+}
+
+    </script>
+</body>
+
+</html>
